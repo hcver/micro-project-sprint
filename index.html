@@ -1,11 +1,291 @@
+<!-- Build a note app to be able to store strength training sessions. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>Strength Training Sessions</title>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 2em;
+            background: #f4f8fb;
+        }
+        h1 {
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        form {
+            background: #fff;
+            padding: 1.5em;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px #e0e7ef;
+            margin-bottom: 2em;
+        }
+        label {
+            display: block;
+            margin-top: 1.2em;
+            font-weight: 500;
+            color: #34495e;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.7em;
+            margin-top: 0.3em;
+            border: 1px solid #bfc9d1;
+            border-radius: 5px;
+            font-size: 1em;
+            background: #fafdff;
+        }
+        button {
+            margin-top: 1.5em;
+            padding: 0.8em 2em;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .session-list {
+            background: #fff;
+            padding: 1.5em;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px #e0e7ef;
+        }
+        .session-list > div {
+            margin-bottom: 2em;
+        }
+        .session-list strong {
+            color: #007bff;
+            font-size: 1.1em;
+        }
+        .session-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        .session-table th, .session-table td {
+            border: 1px solid #e0e7ef;
+            padding: 0.6em 0.5em;
+            text-align: left;
+        }
+        .session-table th {
+            background: #eaf6ff;
+            color: #007bff;
+            font-weight: 600;
+        }
+        .session-table tr:nth-child(even) {
+            background: #fafdff;
+        }
+        .session-table tr:nth-child(odd) {
+            background: #f4f8fb;
+        }
+        fieldset {
+            border: 1px solid #e0e7ef;
+            border-radius: 7px;
+            padding: 1em;
+            background: #fafdff;
+        }
+        legend {
+            font-weight: 600;
+            color: #007bff;
+        }
+        #current-session-info {
+            background: #eaf6ff;
+            color: #007bff;
+            border-radius: 6px;
+            padding: 0.7em 1em;
+            font-weight: 500;
+            margin-bottom: 1.2em;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 0.5em;
+            }
+            form, .session-list {
+                padding: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
-    Hello world!
+    <div class="container">
+        <h1>Strength Training Sessions</h1>
+        <form id="week-session-form">
+            <label>Week
+                <input type="text" id="week" placeholder="e.g. Week 1" required />
+            </label>
+            <label>Session
+                <select id="sessionName" required>
+                    <option value="">Select session</option>
+                    <option value="Upper 1">Upper 1</option>
+                    <option value="Lower 1">Lower 1</option>
+                    <option value="Upper 2">Upper 2</option>
+                    <option value="Lower 2">Lower 2</option>
+                </select>
+            </label>
+            <button type="submit">Start Session</button>
+        </form>
+        <form id="exercise-form" style="display:none;">
+            <div id="exercise-fields"></div>
+            <button type="submit">Save All Exercises</button>
+        </form>
+        <div class="session-list" id="session-list">
+            <!-- Sessions will be listed here -->
+        </div>
+    </div>
+    <script>
+        // Predefined session templates
+        const sessionTemplates = {
+            "Upper 1": [
+                "Dumbbell press",
+                "T-bar row",
+                "side raises",
+                "chinpus",
+                "french press",
+                "preacher curl"
+            ],
+            "Lower 1": [
+                "Hamstring curl",
+                "Hacksquat",
+                "Bulgarian Split squat",
+                "calf raises",
+                "barbell curl"
+            ],
+            "Upper 2": [
+                "Bench press",
+                "Pull ups",
+                "Shoulder press",
+                "Triceps dips",
+                "Biceps curl"
+            ],
+            "Lower 2": [
+                "Leg press",
+                "Deadlift",
+                "Lunges",
+                "Seated calf raises",
+                "Leg extension"
+            ]
+        };
+        function getSessions() {
+            return JSON.parse(localStorage.getItem('trainingSessions') || '{}');
+        }
+        function saveSessions(sessions) {
+            localStorage.setItem('trainingSessions', JSON.stringify(sessions));
+        }
+        function renderSessions() {
+            const list = document.getElementById('session-list');
+            const sessions = getSessions();
+            if (Object.keys(sessions).length === 0) {
+                list.innerHTML = '<p>No sessions saved yet.</p>';
+                return;
+            }
+            let html = '';
+            for (const week in sessions) {
+                html += `<div style="margin-bottom:2em;"><strong>${week}</strong>`;
+                for (const sessionName in sessions[week]) {
+                    html += `<div style="margin:1em 0 2em 0;"><strong>${sessionName}</strong>`;
+                    html += `<table class="session-table"><thead><tr><th>Exercise</th><th>Set</th><th>Reps</th><th>Weight</th></tr></thead><tbody>`;
+                    for (const exercise in sessions[week][sessionName]) {
+                        for (const set in sessions[week][sessionName][exercise]) {
+                            const s = sessions[week][sessionName][exercise][set];
+                            html += `<tr><td>${exercise}</td><td>${set}</td><td>${s.reps}</td><td>${s.weight}</td></tr>`;
+                        }
+                    }
+                    html += `</tbody></table></div>`;
+                }
+                html += `</div>`;
+            }
+            list.innerHTML = html;
+        }
+        // New: Handle week/session selection
+        document.getElementById('week-session-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const weekInput = document.getElementById('week');
+            const sessionInput = document.getElementById('sessionName');
+            const week = weekInput.value.trim();
+            const sessionName = sessionInput.value;
+            if (!week || !sessionName) return;
+            // Lock week/session fields
+            weekInput.disabled = true;
+            sessionInput.disabled = true;
+            // Show current session info
+            let info = document.getElementById('current-session-info');
+            if (!info) {
+                info = document.createElement('div');
+                info.id = 'current-session-info';
+                info.style.margin = '1em 0';
+                const exerciseForm = document.getElementById('exercise-form');
+                exerciseForm.parentNode.insertBefore(info, exerciseForm);
+            }
+            info.textContent = `Entering: ${week} - ${sessionName}`;
+            // Show exercise form
+            const exerciseFields = document.getElementById('exercise-fields');
+            exerciseFields.innerHTML = '';
+            sessionTemplates[sessionName].forEach(exercise => {
+                exerciseFields.innerHTML += `
+                    <fieldset style='margin-bottom:1em;'>
+                        <legend>${exercise}</legend>
+                        <label>Sets: <input type='number' name='sets-${exercise}' min='1' value='3' required></label><br>
+                        <label>Reps per set: <input type='number' name='reps-${exercise}' min='1' value='10' required></label><br>
+                        <label>Weight: <input type='text' name='weight-${exercise}' placeholder='e.g. 20kg or bodyweight' required></label>
+                    </fieldset>
+                `;
+            });
+            document.getElementById('exercise-form').style.display = '';
+            this.querySelector('button').disabled = true;
+        });
+        // New: Handle exercise form submission
+        document.getElementById('exercise-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const weekInput = document.getElementById('week');
+            const sessionInput = document.getElementById('sessionName');
+            const week = weekInput.value.trim();
+            const sessionName = sessionInput.value;
+            let sessions = getSessions();
+            if (!sessions[week]) sessions[week] = {};
+            if (!sessions[week][sessionName]) sessions[week][sessionName] = {};
+            sessionTemplates[sessionName].forEach(exercise => {
+                const sets = Number(this.querySelector(`[name='sets-${exercise}']`).value);
+                const reps = Number(this.querySelector(`[name='reps-${exercise}']`).value);
+                const weight = this.querySelector(`[name='weight-${exercise}']`).value.trim();
+                if (!sessions[week][sessionName][exercise]) sessions[week][sessionName][exercise] = {};
+                for (let i = 1; i <= sets; i++) {
+                    sessions[week][sessionName][exercise][`set${i}`] = { reps, weight };
+                }
+            });
+            saveSessions(sessions);
+            this.style.display = 'none';
+            // Unlock week/session fields
+            weekInput.disabled = false;
+            sessionInput.disabled = false;
+            // Remove current session info
+            const info = document.getElementById('current-session-info');
+            if (info) info.remove();
+            const weekSessionForm = document.getElementById('week-session-form');
+            weekSessionForm.querySelector('button').disabled = false;
+            weekSessionForm.reset();
+            this.reset();
+            renderSessions();
+        });
+        // Initial render
+        renderSessions();
+    </script>
 </body>
 </html>
-
