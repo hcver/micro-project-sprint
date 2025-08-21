@@ -1,0 +1,348 @@
+"Week 1": {
+    "Upper 1": {
+        "Dumbbell press": {
+            "set1": {
+                "reps": 10,
+                "weight": "20kg"
+            },
+            "set2": {
+              "reps": 10,
+              "weight": "30kg"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "40kg"
+            },
+            "set4": {
+                "reps": 10,
+                "weight": "50kg"
+            },
+            "set5": {
+                "reps": 10,
+                "weight": "60kg"
+            }
+        },
+        "T-bar row": {
+            "set1": {
+                "reps": 8,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 8,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 8,
+                "weight": "bodyweight"
+            }
+        },
+        "side raises": {
+            "set1": {
+                "reps": 5,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 5,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 5,
+                "weight": "bodyweight"
+            }
+        },
+        "chinpus": {
+            "set1": {
+                "reps": 5,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 5,
+                "weight": "bodyweight"
+            }
+        },
+        "french press": {
+            "set1": {
+                "reps": 5,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 5,
+                "weight": "bodyweight"
+            }
+        },
+        "preacher curl": {
+            "set1": {
+                "reps": 5,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 5,
+                "weight": "bodyweight"
+            }
+        }
+    },
+    "Lower 1": {
+        "Hamstring curl": {
+            "set1": {
+                "reps": 10,
+                "weight": "40kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "50kg"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "60kg"
+            }
+        },
+        "Hacksquat": {
+            "set1": {
+                "reps": 10,
+                "weight": "80kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "90kg"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "100kg"
+            },
+            "set4": {
+                "reps": 10,
+                "weight": "110kg"
+            }
+        },
+        "Bulgarian Split squat": {
+            "set1": {
+                "reps": 10,
+                "weight": "100kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "110kg"
+            }
+        },
+        "calf raises": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "barbell curl": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "rear delt flies": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        }
+    },
+    "Upper 2": {
+        "pull-ups": {
+            "set1": {
+                "reps": 10,
+                "weight": "20kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "30kg"
+            }
+        },
+        "landmine shoulder press": {
+            "set1": {
+                "reps": 10,
+                "weight": "20kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "30kg"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "40kg"
+            },
+            "set4": {
+                "reps": 10,
+                "weight": "50kg"
+            }
+        },
+        "barbell bentover row": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "ring dips": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "db skull crushers": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "hammer curls": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "sie raises + upright row superset": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        }
+    },
+    "Lower 2": {
+        "belt squat": {
+            "set1": {
+                "reps": 10,
+                "weight": "100kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "110kg"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "120kg"
+            },
+            "set4": {
+                "reps": 10,
+                "weight": "130kg"
+            }
+        },
+        "Romanian deadlift": {
+            "set1": {
+                "reps": 10,
+                "weight": "140kg"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "150kg"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "160kg"
+            }
+        },
+        "Sissy squat": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "calf raises": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "laying db curls": {
+            "set1": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set2": {
+                "reps": 10,
+                "weight": "bodyweight"
+            },
+            "set3": {
+                "reps": 10,
+                "weight": "bodyweight"
+            }
+        },
+        "rear delt flies + side raises superset": {
+            "set1": {
+                "reps": 10,
+                "weight": ""
+            },
+            "set2": {
+                "reps": 30, // seconds for planks
+                "weight": ""
+            },
+            "set3": {
+                "reps": 10,
+                "weight": ""
+            }
+        }
+    }
+}
